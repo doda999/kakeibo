@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="margin:20px;">
+    <div style="text-align:center;">
+        <div class="top-contents">
+            <p><a href="{% url 'money:list' prev_year prev_month %}">前月へ</a></p>
+            <h1>{{ year }}年{{ month }}月</h1>
+            <p><a href="{% url 'money:list' next_year next_month %}">次月へ</a></p>
+        </div>
+        <div class="in-ex">
+            {% if sum > 0 %}
+            <h1>今月の収支: ¥{{ sum }}</h1>
+            {% else %}
+            <h1>今月の収支: <span style="color:red;">¥{{ sum }}</span></h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="tab-wrap">
+        <input id="tab1" type="radio" name="tab" class="tab-switch" checked="checked" /><label class="tab-label" for="tab1">支出</label>
+        <div class="tab-content">
+            <hr noshade>
+            <div class="leftArea">
+                <div class="expenceGraphs">
+                    <p>支出合計: ¥{{ sum_ex }}</p>
+                    <img src="../../static/images/expence_{{ year }}_{{ month }}.svg"  width="100%">
+                </div>
+            </div>
+            <div class="rightArea">
+                <div class="tableArea">
+                    <div class="list">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th class="fixed" width="28%">日付</th>
+                                    <th class="fixed" width="28%">概要</th>
+                                    <th class="fixed" width="28%">金額</th>
+                                    <th class="fixed" width="16%"></th>
+                                </tr>
+                                {% for l in expence_lists %}
+                                <tr>
+                                    
+                                    <td>{{ l.date|date:'n/j' }}</td>
+                                    <td>{{ l.detail }}</td>
+                                    <td>¥{{ l.cost }}</td>
+                                    <td style="display:flex;">
+                                        <a class="btn btn-outline-info" style="margin-right:10px;" href="{% url 'money:expence_update' l.pk %}">変更</a>
+                                        <form action="{% url 'money:expence_delete' l.pk %}" method="POST">
+                                            {% csrf_token %}
+                                            <button class="btn btn-outline-danger" type="submit" onclick="return confirm("本当に削除しますか？");">削除</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input id="tab2" type="radio" name="tab" class="tab-switch"/><label class="tab-label" for="tab2">収入</label>
+        <div class="tab-content">
+            <hr noshade>
+            <div class="leftArea">
+                <div class="revenueGraphs">
+                    <p>収入合計: ¥{{ sum_re }}</p>
+                    <img src="../../static/images/revenue_{{ year }}_{{ month }}.svg" width="100%">
+                </div>
+            </div>
+            <div class="rightArea">
+                <div class="tableArea">
+                <div class="list">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="fixed" width="28%">日付</th>
+                                <th class="fixed" width="28%">概要</th>
+                                <th class="fixed" width="28%">金額</th>
+                                <th class="fixed" width="16%"></th>
+                            </tr>
+                            {% for l in revenue_lists %}
+                            <tr> 
+                                <td>{{ l.date|date:'n/j' }}</td>
+                                <td>{{ l.detail }}</td>
+                                <td>¥{{ l.cost }}</td>
+                                <td style="display:flex;">
+                                    <a class="btn btn-outline-info" style="margin-right:10px;" href="{% url 'money:revenue_update' l.pk %}">変更</a>
+                                    <form action="{% url 'money:revenue_delete' l.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-danger" type="submit" onclick="return confirm("本当に削除しますか？");">削除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'accounts:top' %}" class="btn btn-secondary">戻る</a>
+        <a href="{% url 'money:new_expence' %}" class="btn btn-primary">支出を追加</a>
+        <a href="{% url 'money:new_revenue' %}" class="btn btn-success">収入を追加</a>
+    </div>
+
+</div>
+{% endblock %}

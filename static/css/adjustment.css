@@ -1,0 +1,141 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navdrop{
+    margin-right:20px;
+    width: 160px;
+}
+
+.top-contents{
+   margin: 20px auto;
+   width: 60%;
+   text-align:center;
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+   border-bottom: solid 1px gray;
+}
+
+
+.top-contents a{
+    text-decoration:none;
+    color: darkslategray;
+}
+
+.top-contents h1{
+    font-size: 35px;
+    color:steelblue;
+}
+
+.graphs{
+    height: 300px;
+}
+.leftArea{
+    padding: 15px;
+    width: 50%;
+    height: auto;
+    float: left;
+}
+
+.rightArea{
+    padding: 15px;
+    width: 50%;
+    height: auto;
+    float: right;
+}
+
+.expenceGraphs{
+    height: 540px;
+    padding: 15px;
+    background:azure;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.revenueGraphs{
+    height: 540px;
+    padding: 15px;
+    background: honeydew;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.tab-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    padding: 15px ;
+    border-radius: 10px;
+}
+
+.tab-wrap a{
+    margin-right: 10px;
+}
+
+.tab-label{
+    color:silver;
+    font-size: 25px;
+    margin-right: 5px;
+    padding: 0 12px;
+    order: -1;
+}
+
+.tab-content{
+    width:100%;
+    display:none;
+}
+
+.tab-content hr{
+    width:100%;
+    background-color:powderblue;
+    margin-bottom:25px;
+}
+
+.tab-content p{
+    font-weight: bold;
+    font-size: 30px;
+    padding: 0 12px;
+}
+
+.tableArea{
+    padding: 15px;
+    background:ivory;
+    border-radius: 20px;
+    font-size: 20px;
+    position: relative;
+}
+
+.list{
+    max-height:510px;
+    overflow:auto;
+}
+
+.fixed{
+    position:sticky;
+    top:0;
+    background-color: lightgray;
+}
+
+
+.tab-switch:checked+.tab-label{
+    color:black;
+}
+
+.tab-switch:checked+.tab-label+.tab-content{
+    display:block;
+}
+
+.tab-switch{
+    display:none;
+}
+
+.in-ex{
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 50px;
+}
+
+

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<div style="margin:20px;">
+    <form action="" method="POST">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {% if field.label != "User" %}
+            <label for="{{ field.id_for_label}}">{{ field.label_tag }}</label>
+            {% endif %}
+            {{ field }}
+            <span style="color:red;">{{ field.errors }}</span>
+        </div>
+        {% endfor %}
+        <div style="text-align:center;">
+            <a href="{% url 'money:list' year month %}" class="btn btn-secondary" >戻る</a>
+            <button class="btn btn-success" type="submit">追加</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

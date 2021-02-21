@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+<div style="margin:20px;">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ユーザー名</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>姓</th>
+                <td>{{ user.last_name }}</td>
+            </tr>
+            <tr>
+                <th>名</th>
+                <td>{{ user.first_name }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{% url 'accounts:profile_update' user.pk %}">変更</a>
+    <a class="btn btn-secondary" href="{% url 'accounts:password' user.pk %}">パスワード変更</a>
+</div>
+{% endblock %}
