@@ -21,8 +21,8 @@ class Expence(models.Model):
     date = models.DateField(verbose_name='日付')
     detail = models.CharField(max_length=200,verbose_name='概要')
     cost = models.IntegerField(default=0,verbose_name='金額')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category_out, on_delete=models.SET_NULL,null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="ユーザ名")
+    category = models.ForeignKey(Category_out, on_delete=models.SET_NULL,null=True,verbose_name="カテゴリ")
 
     def __str__(self):
         return self.detail+'¥'+str(self.cost)
